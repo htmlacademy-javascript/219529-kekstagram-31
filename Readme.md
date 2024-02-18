@@ -1,7 +1,7 @@
 # Личный проект «Кекстаграм»
 
 * Студент: [Maria Hrol](https://up.htmlacademy.ru/javascript/31/user/219529).
-* Наставник: `Неизвестно`.
+* Наставник: [Максим Иванов](https://htmlacademy.ru/profile/id342945).
 
 ---
 

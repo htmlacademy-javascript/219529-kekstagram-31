@@ -3,7 +3,7 @@ import {
   getSequentNumber,
   getRandomElement,
   getRandomUniqueNumber,
-} from './util.js';
+} from './utils.js';
 
 import {
   COMMENTS_MIN,

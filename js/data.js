@@ -34,7 +34,7 @@ const createComments = () => {
 };
 const createPhoto = () => ({
   id: getPhotoId(),
-  url: `photos${getRandomNumber(PHOTOS_MIN, PHOTOS_MAX)}.jpg`,
+  url: `photos/${getRandomNumber(PHOTOS_MIN, PHOTOS_MAX)}.jpg`,
   description: getRandomElement(DESCRIPTIONS),
   likes: getRandomNumber(LIKES_MIN, LIKES_MAX),
   comments: createComments(),

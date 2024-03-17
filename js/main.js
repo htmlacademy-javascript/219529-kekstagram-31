@@ -1,4 +1,6 @@
 import {createPhotos} from './data.js';
-import {PHOTOS_MAX} from './const';
+import {PHOTOS_MAX} from './const.js';
+import {renderThumbnails} from './render.js';
 
-createPhotos(PHOTOS_MAX);
+const dataPhotos = createPhotos(PHOTOS_MAX);
+renderThumbnails(dataPhotos);

@@ -3,20 +3,6 @@ import {clearComments} from './comments.js';
 const photoElement = document.querySelector('.big-picture');
 const closeButton = photoElement.querySelector('#picture-cancel');
 
-const documentKeydownHandler = (evt) => {
-  if (evt.key === 'Escape') {
-    evt.preventDefault();
-    // eslint-disable-next-line no-use-before-define
-    closePhoto();
-  }
-};
-
-const closeButtonClickHandler = (evt) => {
-  evt.preventDefault();
-  // eslint-disable-next-line no-use-before-define
-  closePhoto();
-};
-
 const openPhoto = () => {
   photoElement.classList.remove('hidden');
   document.body.classList.add('modal-open');
@@ -44,5 +30,17 @@ const renderPhoto = ({url, description, likes}) => {
 
   closeButton.addEventListener('click', closeButtonClickHandler);
 };
+
+function documentKeydownHandler (evt) {
+  if (evt.key === 'Escape') {
+    evt.preventDefault();
+    closePhoto();
+  }
+}
+
+function closeButtonClickHandler (evt) {
+  evt.preventDefault();
+  closePhoto();
+}
 
 export {openPhoto, renderPhoto};

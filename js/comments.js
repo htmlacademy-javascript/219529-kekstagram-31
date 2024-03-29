@@ -36,10 +36,6 @@ const renderNextComments = () => {
   }
 };
 
-const loadCommentsButtonClickHandler = () => {
-  renderNextComments();
-};
-
 const clearComments = () => {
   commentsContainerElement.innerHTML = '';
   commentsCurrentCount = 0;
@@ -55,5 +51,9 @@ const renderComments = (dataComments) => {
 
   loadCommentsButton.addEventListener('click', loadCommentsButtonClickHandler);
 };
+
+function loadCommentsButtonClickHandler () {
+  renderNextComments();
+}
 
 export {renderComments, clearComments};

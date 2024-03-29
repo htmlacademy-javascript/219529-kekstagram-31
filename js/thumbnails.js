@@ -8,7 +8,8 @@ const createThumbnail = ({url, description, likes, comments}, imageClickHandler)
   imageElement.src = url;
   imageElement.alt = description;
 
-  imageElement.addEventListener('click', () => {
+  imageElement.addEventListener('click', (evt) => {
+    evt.preventDefault();
     imageClickHandler({url, description, likes, comments});
   });
 

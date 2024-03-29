@@ -20,7 +20,7 @@ import {
 } from './const';
 
 const getPhotoId = getSequentNumber();
-const getCommentId = getSequentNumber();
+const getCommentId = getRandomUniqueNumber(COMMENTS_MIN, COMMENTS_MAX);
 const createDataComment = () => ({
   id: getCommentId(),
   avatar: `img/avatar-${getRandomNumber(AVATARS_MIN, AVATARS_MAX)}.svg`,

@@ -1,4 +1,4 @@
-import {COMMENTS_RENDER_STEP} from './const';
+import {COMMENTS_RENDER_STEP} from './const.js';
 
 const loadCommentsButton = document.querySelector('.comments-loader');
 const commentsContainerElement = document.querySelector('.social__comments');

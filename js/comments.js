@@ -1,3 +1,10 @@
+import {COMMENTS_RENDER_STEP} from './const.js';
+
+const loadCommentsButton = document.querySelector('.comments-loader');
+const commentsContainerElement = document.querySelector('.social__comments');
+let commentsCurrentCount = 0;
+let comments = [];
+
 const createComment = (dataComment) =>
   `<li class="social__comment">
     <img
@@ -8,23 +15,45 @@ const createComment = (dataComment) =>
     <p class="social__text">${dataComment.message}</p>
   </li>`;
 
-const renderComments = (dataComments) => {
-  const commentsContainerElement = document.querySelector('.social__comments');
+const renderNextComments = () => {
   const commentsTotalCountElement = document.querySelector(
     '.social__comment-total-count');
   const commentsShownCountElement = document.querySelector(
     '.social__comment-shown-count');
-  commentsContainerElement.innerHTML = '';
 
-  dataComments.forEach((dataComment) => {
-    const comment = createComment(dataComment);
-    commentsContainerElement.insertAdjacentHTML('beforeend', comment);
+  const renderedComments = comments.slice(commentsCurrentCount, commentsCurrentCount + COMMENTS_RENDER_STEP);
+  renderedComments.forEach((comment) => {
+    commentsContainerElement.insertAdjacentHTML('beforeend', createComment(comment));
   });
 
-  commentsTotalCountElement.textContent = dataComments.length;
-  commentsShownCountElement.textContent = dataComments.length;
+  commentsCurrentCount += COMMENTS_RENDER_STEP;
 
-  document.querySelector('.comments-loader').classList.add('hidden');
+  commentsTotalCountElement.textContent = comments.length;
+  commentsShownCountElement.textContent = commentsContainerElement.children.length;
+
+  if (commentsContainerElement.children.length >= comments.length) {
+    loadCommentsButton.classList.add('hidden');
+  }
 };
 
-export {renderComments};
+const clearComments = () => {
+  commentsContainerElement.innerHTML = '';
+  commentsCurrentCount = 0;
+  comments = [];
+  loadCommentsButton.classList.remove('hidden');
+  loadCommentsButton.removeEventListener('click', loadCommentsButtonClickHandler);
+};
+
+const renderComments = (dataComments) => {
+  clearComments();
+  comments = dataComments;
+  renderNextComments();
+
+  loadCommentsButton.addEventListener('click', loadCommentsButtonClickHandler);
+};
+
+function loadCommentsButtonClickHandler () {
+  renderNextComments();
+}
+
+export {renderComments, clearComments};

@@ -5,8 +5,11 @@ const LIKES_MAX = 200;
 const COMMENTS_MIN = 0;
 const COMMENTS_MAX = 30;
 const COMMENTS_RENDER_STEP = 5;
+const COMMENT_MAX_LENGTH = 140;
 const AVATARS_MIN = 1;
 const AVATARS_MAX = 6;
+const HASHTAGS_MAX = 5;
+const HASHTAG_MAX_LENGTH = 20;
 
 const DESCRIPTIONS = [
   'Не откладывай на завтра, откладывай сразу навсегда',
@@ -36,9 +39,12 @@ export {
   COMMENTS_MIN,
   COMMENTS_MAX,
   COMMENTS_RENDER_STEP,
+  COMMENT_MAX_LENGTH,
   AVATARS_MIN,
   AVATARS_MAX,
   DESCRIPTIONS,
   MESSAGES,
   NAMES,
+  HASHTAGS_MAX,
+  HASHTAG_MAX_LENGTH,
 };

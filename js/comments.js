@@ -57,4 +57,4 @@ function loadCommentsButtonClickHandler () {
   renderNextComments();
 }
 
-export {renderComments, clearComments};
+export {renderComments};

@@ -8,12 +8,12 @@ const openModal = (modalElement) => {
 };
 
 const closeModal = (modalElement) => {
+  const closeButtonElement = modalElement.querySelector('.cancel');
   modalElement.classList.add('hidden');
   modalElement.classList.remove('modal');
   document.body.classList.remove('modal-open');
   document.removeEventListener('keydown', documentKeydownHandler);
-  modalElement.querySelector('.cancel').removeEventListener('click', closeButtonClickHandler);
-  document.querySelector('#upload-select-image').reset();
+  closeButtonElement.removeEventListener('click', closeButtonClickHandler);
 };
 
 function documentKeydownHandler (evt) {

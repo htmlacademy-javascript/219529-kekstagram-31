@@ -5,8 +5,10 @@ const uploadElement = document.querySelector('.img-upload__overlay');
 const uploadFormElement = document.querySelector('#upload-select-image');
 const uploadInputElement = uploadFormElement.querySelector('#upload-file');
 
-const uploadInputElementChangeHandler = () =>
+const uploadInputElementChangeHandler = () => {
+  uploadFormElement.reset();
   openModal(uploadElement);
+};
 
 const uploadFormSubmitHandler = (evt) => {
   const isInvalid = !pristine.validate();

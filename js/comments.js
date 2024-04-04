@@ -1,4 +1,5 @@
 import {COMMENTS_RENDER_STEP} from './const.js';
+import {photoElement} from './photo-modal.js';
 
 const loadCommentsButton = document.querySelector('.comments-loader');
 const commentsContainerElement = document.querySelector('.social__comments');
@@ -16,9 +17,9 @@ const createComment = (dataComment) =>
   </li>`;
 
 const renderNextComments = () => {
-  const commentsTotalCountElement = document.querySelector(
+  const commentsTotalCountElement = photoElement.querySelector(
     '.social__comment-total-count');
-  const commentsShownCountElement = document.querySelector(
+  const commentsShownCountElement = photoElement.querySelector(
     '.social__comment-shown-count');
 
   const renderedComments = comments.slice(commentsCurrentCount, commentsCurrentCount + COMMENTS_RENDER_STEP);
@@ -56,4 +57,4 @@ function loadCommentsButtonClickHandler () {
   renderNextComments();
 }
 
-export {renderComments, clearComments};
+export {renderComments};

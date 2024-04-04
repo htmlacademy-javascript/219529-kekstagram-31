@@ -1,15 +1,9 @@
-import {openModal} from './modal.js';
-
-const photoElement = document.querySelector('.big-picture');
-
-const openPhoto = () => {
-  openModal(photoElement);
-};
+import {photoModalElement} from './const-elements.js';
 
 const renderPhoto = ({url, description, likes}) => {
-  const imageElement = photoElement.querySelector('.big-picture__img img');
-  const likesCountElement = photoElement.querySelector('.likes-count');
-  const descriptionElement = photoElement.querySelector('.social__caption');
+  const imageElement = photoModalElement.querySelector('.big-picture__img img');
+  const likesCountElement = photoModalElement.querySelector('.likes-count');
+  const descriptionElement = photoModalElement.querySelector('.social__caption');
 
   imageElement.src = url;
   imageElement.alt = description;
@@ -18,4 +12,4 @@ const renderPhoto = ({url, description, likes}) => {
   descriptionElement.textContent = description;
 };
 
-export {openPhoto, renderPhoto, photoElement};
+export {renderPhoto};

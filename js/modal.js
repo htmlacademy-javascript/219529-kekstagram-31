@@ -1,3 +1,5 @@
+import {uploadFormElement, uploadInputElement, hashtagInputElement, commentInputElement} from './const-elements.js';
+
 const openModal = (modalElement) => {
   const closeButtonElement = modalElement.querySelector('.cancel');
   modalElement.classList.remove('hidden');
@@ -14,12 +16,16 @@ const closeModal = (modalElement) => {
   document.body.classList.remove('modal-open');
   document.removeEventListener('keydown', documentKeydownHandler);
   closeButtonElement.removeEventListener('click', closeButtonClickHandler);
+  // upload-form reset
+  if (uploadInputElement.files) {
+    uploadFormElement.reset();
+  }
 };
 
 function documentKeydownHandler (evt) {
   if (evt.key === 'Escape'
-    && !evt.target.classList.contains('text__hashtags')
-    && !evt.target.classList.contains('text__description')) {
+    && evt.target !== hashtagInputElement
+    && evt.target !== commentInputElement) {
     evt.preventDefault();
     const modalElement = document.querySelector('.modal');
     if (modalElement) {

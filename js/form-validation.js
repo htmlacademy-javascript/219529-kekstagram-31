@@ -1,8 +1,5 @@
-import {COMMENT_MAX_LENGTH, HASHTAG_MAX_LENGTH, HASHTAGS_MAX} from './const.js';
-
-const uploadFormElement = document.querySelector('#upload-select-image');
-const hashtagInputElement = uploadFormElement.querySelector('.text__hashtags');
-const commentInputElement = uploadFormElement.querySelector('.text__description');
+import {COMMENT_MAX_LENGTH, HASHTAG_MAX_LENGTH, HASHTAGS_MAX} from './const-values.js';
+import { uploadFormElement, hashtagInputElement, commentInputElement,} from './const-elements.js';
 
 const pristine = new Pristine(uploadFormElement, {
   classTo: 'img-upload__form', // class of the parent element where the error/success class is added
@@ -63,6 +60,7 @@ const isHashtagsInputTextValid = (inputText) => {
     return !isInvalid;
   });
 };
+
 const isCommentInputTextValid = (inputText) => {
   // comment is not required
   if (!inputText) {

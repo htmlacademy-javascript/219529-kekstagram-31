@@ -5,12 +5,26 @@ import {renderPhoto} from './photo-modal.js';
 import {renderComments} from './comments.js';
 import {openModal} from './modal.js';
 import {photoModalElement} from './const-elements.js';
+import {getData} from './api.js';
 
-const thumbnailClickHandler = (dataPhoto) => {
-  renderPhoto(dataPhoto);
-  renderComments(dataPhoto.comments);
-  openModal(photoModalElement);
+
+const bootstrap = async () => {
+  const thumbnailClickHandler = (dataPhoto) => {
+    renderPhoto(dataPhoto);
+    renderComments(dataPhoto.comments);
+    openModal(photoModalElement);
+  };
+
+  const dataPhotos = await getData();
+  renderThumbnails(dataPhotos, thumbnailClickHandler);
 };
 
-const dataPhotos = createDataPhotos(PHOTOS_MAX);
-renderThumbnails(dataPhotos, thumbnailClickHandler);
+bootstrap();
+
+// const thumbnailClickHandler = (dataPhoto) => {
+//   renderPhoto(dataPhoto);
+//   renderComments(dataPhoto.comments);
+//   openModal(photoModalElement);
+// };
+// const dataPhotos = createDataPhotos(PHOTOS_MAX);
+// renderThumbnails(dataPhotos, thumbnailClickHandler);

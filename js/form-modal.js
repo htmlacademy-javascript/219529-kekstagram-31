@@ -1,9 +1,19 @@
-import {pristine} from './form-validation.js';
 import {uploadFormElement, uploadInputElement, uploadModalElement} from './const-elements.js';
 import {openModal} from './modal.js';
+import {
+  resetEffects,
+  resetScale,
+  setEffects,
+  setScale,
+} from './form-image-edit.js';
+import {pristine} from './form-validation.js';
 
 const uploadInputElementChangeHandler = () => {
+  resetScale();
+  resetEffects();
   openModal(uploadModalElement);
+  setScale();
+  setEffects();
 };
 
 const uploadFormSubmitHandler = (evt) => {

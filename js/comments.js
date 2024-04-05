@@ -1,8 +1,6 @@
-import {COMMENTS_RENDER_STEP} from './const.js';
-import {photoElement} from './photo-modal.js';
+import {COMMENTS_RENDER_STEP} from './const-values.js';
+import {commentsContainerElement, loadCommentsButtonElement, photoModalElement,} from './const-elements.js';
 
-const loadCommentsButton = document.querySelector('.comments-loader');
-const commentsContainerElement = document.querySelector('.social__comments');
 let commentsCurrentCount = 0;
 let comments = [];
 
@@ -17,9 +15,9 @@ const createComment = (dataComment) =>
   </li>`;
 
 const renderNextComments = () => {
-  const commentsTotalCountElement = photoElement.querySelector(
+  const commentsTotalCountElement = photoModalElement.querySelector(
     '.social__comment-total-count');
-  const commentsShownCountElement = photoElement.querySelector(
+  const commentsShownCountElement = photoModalElement.querySelector(
     '.social__comment-shown-count');
 
   const renderedComments = comments.slice(commentsCurrentCount, commentsCurrentCount + COMMENTS_RENDER_STEP);
@@ -33,7 +31,7 @@ const renderNextComments = () => {
   commentsShownCountElement.textContent = commentsContainerElement.children.length;
 
   if (commentsContainerElement.children.length >= comments.length) {
-    loadCommentsButton.classList.add('hidden');
+    loadCommentsButtonElement.classList.add('hidden');
   }
 };
 
@@ -41,8 +39,8 @@ const clearComments = () => {
   commentsContainerElement.innerHTML = '';
   commentsCurrentCount = 0;
   comments = [];
-  loadCommentsButton.classList.remove('hidden');
-  loadCommentsButton.removeEventListener('click', loadCommentsButtonClickHandler);
+  loadCommentsButtonElement.classList.remove('hidden');
+  loadCommentsButtonElement.removeEventListener('click', loadCommentsButtonClickHandler);
 };
 
 const renderComments = (dataComments) => {
@@ -50,7 +48,7 @@ const renderComments = (dataComments) => {
   comments = dataComments;
   renderNextComments();
 
-  loadCommentsButton.addEventListener('click', loadCommentsButtonClickHandler);
+  loadCommentsButtonElement.addEventListener('click', loadCommentsButtonClickHandler);
 };
 
 function loadCommentsButtonClickHandler () {

@@ -17,7 +17,7 @@ import {
   LIKES_MAX,
   LIKES_MIN,
   DESCRIPTIONS,
-} from './const.js';
+} from './const-values.js';
 
 const getPhotoId = getSequentNumber();
 const getCommentId = getRandomUniqueNumber(COMMENTS_MIN, COMMENTS_MAX);

@@ -1,3 +1,10 @@
+const effectsSettings = {
+  chrome: {filter: 'grayscale', min: 0, max: 1, step: 0.1, unit: ''},
+  sepia: {filter: 'sepia', min: 0, max: 1, step: 0.1, unit: ''},
+  marvin: {filter: 'invert', min: 0, max: 100, step: 1, unit: '%'},
+  phobos: {filter: 'blur', min: 0, max: 3, step: 0.1, unit: 'px'},
+  heat: {filter: 'brightness', min: 1, max: 3, step: 0.1, unit: ''},
+};
 const PHOTOS_MIN = 1;
 const PHOTOS_MAX = 25;
 const LIKES_MIN = 15;
@@ -10,6 +17,9 @@ const AVATARS_MIN = 1;
 const AVATARS_MAX = 6;
 const HASHTAGS_MAX = 5;
 const HASHTAG_MAX_LENGTH = 20;
+const SCALE_MAX = 1;
+const SCALE_MIN = 0.25;
+const SCALE_CHANGE_STEP = 0.25;
 
 const DESCRIPTIONS = [
   'Не откладывай на завтра, откладывай сразу навсегда',
@@ -32,6 +42,7 @@ const MESSAGES = [
 const NAMES = ['Василиса', 'Мира', 'Лёва', 'Ева', 'Дарина', 'Марк', 'Артём', 'Варя', 'Лёша', 'Лея', 'Арина', 'Мия', 'Платон', 'Доминик', 'Эвита'];
 
 export {
+  effectsSettings,
   PHOTOS_MIN,
   PHOTOS_MAX,
   LIKES_MIN,
@@ -42,6 +53,9 @@ export {
   COMMENT_MAX_LENGTH,
   AVATARS_MIN,
   AVATARS_MAX,
+  SCALE_MIN,
+  SCALE_MAX,
+  SCALE_CHANGE_STEP,
   DESCRIPTIONS,
   MESSAGES,
   NAMES,

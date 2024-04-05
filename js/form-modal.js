@@ -1,13 +1,19 @@
+import {uploadFormElement, uploadInputElement, uploadModalElement} from './const-elements.js';
 import {openModal} from './modal.js';
+import {
+  resetEffects,
+  resetScale,
+  setEffects,
+  setScale,
+} from './form-image-edit.js';
 import {pristine} from './form-validation.js';
 
-const uploadElement = document.querySelector('.img-upload__overlay');
-const uploadFormElement = document.querySelector('#upload-select-image');
-const uploadInputElement = uploadFormElement.querySelector('#upload-file');
-
 const uploadInputElementChangeHandler = () => {
-  uploadFormElement.reset();
-  openModal(uploadElement);
+  resetScale();
+  resetEffects();
+  openModal(uploadModalElement);
+  setScale();
+  setEffects();
 };
 
 const uploadFormSubmitHandler = (evt) => {

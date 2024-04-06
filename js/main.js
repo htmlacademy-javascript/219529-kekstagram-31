@@ -1,5 +1,4 @@
-import {createDataPhotos} from './data.js';
-import {PHOTOS_MAX} from './const-values.js';
+import {showErrorMessage} from './utils.js';
 import {renderThumbnails} from './thumbnails.js';
 import {renderPhoto} from './photo-modal.js';
 import {renderComments} from './comments.js';
@@ -9,22 +8,20 @@ import {getData} from './api.js';
 
 
 const bootstrap = async () => {
-  const thumbnailClickHandler = (dataPhoto) => {
-    renderPhoto(dataPhoto);
-    renderComments(dataPhoto.comments);
-    openModal(photoModalElement);
-  };
+  try {
+    const thumbnailClickHandler = (dataPhoto) => {
+      renderPhoto(dataPhoto);
+      renderComments(dataPhoto.comments);
+      openModal(photoModalElement);
+    };
 
-  const dataPhotos = await getData();
-  renderThumbnails(dataPhotos, thumbnailClickHandler);
+    const dataPhotos = await getData();
+    renderThumbnails(dataPhotos, thumbnailClickHandler);
+
+  } catch (error) {
+    showErrorMessage(error.message);
+  }
 };
 
 bootstrap();
 
-// const thumbnailClickHandler = (dataPhoto) => {
-//   renderPhoto(dataPhoto);
-//   renderComments(dataPhoto.comments);
-//   openModal(photoModalElement);
-// };
-// const dataPhotos = createDataPhotos(PHOTOS_MAX);
-// renderThumbnails(dataPhotos, thumbnailClickHandler);

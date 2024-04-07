@@ -1,4 +1,5 @@
-import {uploadFormElement, uploadInputElement, hashtagInputElement, commentInputElement} from './const-elements.js';
+import {formElement, formFileInputElement, hashtagInputElement, commentInputElement} from './const-elements.js';
+import {resetEffect, resetScale} from './form-image-edit.js';
 
 const openModal = (modalElement) => {
   const closeButtonElement = modalElement.querySelector('.cancel');
@@ -17,8 +18,10 @@ const closeModal = (modalElement) => {
   document.removeEventListener('keydown', documentKeydownHandler);
   closeButtonElement.removeEventListener('click', closeButtonClickHandler);
   // upload-form reset
-  if (uploadInputElement.files) {
-    uploadFormElement.reset();
+  if (formFileInputElement.files) {
+    formElement.reset();
+    resetScale();
+    resetEffect();
   }
 };
 
@@ -40,4 +43,4 @@ function closeButtonClickHandler (evt) {
   closeModal(modalElement);
 }
 
-export {openModal};
+export {openModal, closeModal};

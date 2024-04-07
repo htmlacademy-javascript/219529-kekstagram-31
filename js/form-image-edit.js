@@ -1,4 +1,4 @@
-import {effectLevelInputElement, effectNameInputElement, effectsListElement, formImageElement, scaleInputElement, sliderContainerElement, sliderElement, uploadFormElement,} from './const-elements.js';
+import {effectLevelInputElement, effectNameInputElement, effectsListElement, formImageElement, scaleInputElement, sliderContainerElement, sliderElement, formElement,} from './const-elements.js';
 import {SCALE_CHANGE_STEP, SCALE_MAX, SCALE_MIN, effectsSettings} from './const-values.js';
 
 const resetScale = () => {
@@ -7,8 +7,8 @@ const resetScale = () => {
 };
 
 const setScale = () => {
-  const scaleSmallerButtonElement = uploadFormElement.querySelector('.scale__control--smaller');
-  const scaleBiggerButtonElement = uploadFormElement.querySelector('.scale__control--bigger');
+  const scaleSmallerButtonElement = formElement.querySelector('.scale__control--smaller');
+  const scaleBiggerButtonElement = formElement.querySelector('.scale__control--bigger');
 
   scaleInputElement.value = `${SCALE_MAX * 100}%`;
   let currentScale = SCALE_MAX;
@@ -51,12 +51,13 @@ const createSlider = () => {
   }
 };
 
-const resetEffects = () => {
+const resetEffect = () => {
   sliderContainerElement.classList.add('hidden');
   formImageElement.style.filter = '';
   effectNameInputElement.value = '';
   effectLevelInputElement.value = '';
 };
+
 const changeEffect = (effect) => {
   const {filter, min, max, step, unit} = effectsSettings[effect];
 
@@ -80,7 +81,7 @@ function effectsListElementChangeHandler (evt) {
   const effect = evt.target.value;
 
   if (effect === 'none') {
-    resetEffects();
+    resetEffect();
   }
 
   if (effect !== 'none') {
@@ -89,9 +90,9 @@ function effectsListElementChangeHandler (evt) {
   }
 }
 
-const setEffects = () => {
+const setEffect = () => {
   createSlider();
   effectsListElement.addEventListener('change', effectsListElementChangeHandler);
 };
 
-export {resetScale, setScale, resetEffects, setEffects};
+export {resetScale, setScale, resetEffect, setEffect};

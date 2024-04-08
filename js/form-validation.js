@@ -2,7 +2,7 @@ import {COMMENT_MAX_LENGTH, HASHTAG_MAX_LENGTH, HASHTAGS_MAX} from './const-valu
 import { formElement, hashtagInputElement, commentInputElement,} from './const-elements.js';
 
 const pristine = new Pristine(formElement, {
-  classTo: 'img-upload__form', // class of the parent element where the error/success class is added
+  classTo: 'img-upload__field-wrapper', // class of the parent element where the error/success class is added
   errorTextParent: 'img-upload__field-wrapper', // class of the parent element where error text element is appended
   errorTextTag: 'div', // type of element to create for the error text
   errorTextClass: 'img-upload__field-wrapper--error', // class of the error text element

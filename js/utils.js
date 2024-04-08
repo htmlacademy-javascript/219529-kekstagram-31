@@ -1,42 +1,38 @@
-import {TIMEOUT_MESSAGE_REMOVE} from './const-values.js';
+const fisherYatesShuffle = (array) => {
+  const shuffledArray = array.slice();
+  let currentIndex = shuffledArray.length;
+  while (currentIndex !== 0) {
+    // Pick a remaining element
+    const randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex--;
 
-const showErrorMessage = (message) => {
-  const errorElement = document.querySelector('#data-error')
-    .content
-    .querySelector('.data-error')
-    .cloneNode(true);
-
-  if (message) {
-    errorElement.querySelector('.data-error__title').textContent = message;
+    // And swap it with the current element
+    const temporaryValue = shuffledArray[currentIndex];
+    shuffledArray[currentIndex] = shuffledArray[randomIndex];
+    shuffledArray[randomIndex] = temporaryValue;
   }
-
-  document.body.append(errorElement);
-
-  setTimeout(() => {
-    errorElement.remove();
-  }, TIMEOUT_MESSAGE_REMOVE);
+  return shuffledArray;
 };
 
-const closeNotification = (evt) => {
-  evt.stopPropagation();
-  const notificationElement = document.querySelector('.success')
-    || document.querySelector('.error');
-  const closeNotificationButtonElement = notificationElement.querySelector(
-    'button');
-  if (evt.key === 'Escape'
-    || evt.target === notificationElement
-    || evt.target === closeNotificationButtonElement) {
-    notificationElement.remove();
-    document.body.removeEventListener('click', closeNotification);
-    document.body.removeEventListener('keydown', closeNotification);
-  }
-};
-const showNotification = (template, trigger = null) => {
-  trigger?.();
-  const notificationElement = template.cloneNode(true);
-  document.body.append(notificationElement);
-  document.body.addEventListener('click', closeNotification);
-  document.body.addEventListener('keydown', closeNotification);
+// Функция взята из интернета и доработана
+// Источник - https://www.freecodecamp.org/news/javascript-debounce-example
+const debounce = (callback, timeoutDelay = 500) => {
+  // Используем замыкания, чтобы id таймаута у нас навсегда приклеился
+  // к возвращаемой функции с setTimeout, тогда мы его сможем перезаписывать
+  let timeoutId;
+
+  return (...rest) => {
+    // Перед каждым новым вызовом удаляем предыдущий таймаут,
+    // чтобы они не накапливались
+    clearTimeout(timeoutId);
+
+    // Затем устанавливаем новый таймаут с вызовом колбэка на ту же задержку
+    timeoutId = setTimeout(() => callback.apply(this, rest), timeoutDelay);
+
+    // Таким образом цикл «поставить таймаут - удалить таймаут» будет выполняться,
+    // пока действие совершается чаще, чем переданная задержка timeoutDelay
+  };
 };
 
-export {showNotification, closeNotification, showErrorMessage};
+
+export {fisherYatesShuffle, debounce};

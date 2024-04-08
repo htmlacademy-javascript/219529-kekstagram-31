@@ -1,5 +1,5 @@
 import {COMMENTS_RENDER_STEP} from './const-values.js';
-import {commentsContainerElement, loadCommentsButtonElement, photoModalElement,} from './const-elements.js';
+import {commentsContainerElement, loadCommentsButton, photoModalElement,} from './const-elements.js';
 
 let commentsCurrentCount = 0;
 let comments = [];
@@ -31,7 +31,7 @@ const renderNextComments = () => {
   commentsShownCountElement.textContent = commentsContainerElement.children.length;
 
   if (commentsContainerElement.children.length >= comments.length) {
-    loadCommentsButtonElement.classList.add('hidden');
+    loadCommentsButton.classList.add('hidden');
   }
 };
 
@@ -39,8 +39,8 @@ const clearComments = () => {
   commentsContainerElement.innerHTML = '';
   commentsCurrentCount = 0;
   comments = [];
-  loadCommentsButtonElement.classList.remove('hidden');
-  loadCommentsButtonElement.removeEventListener('click', loadCommentsButtonClickHandler);
+  loadCommentsButton.classList.remove('hidden');
+  loadCommentsButton.removeEventListener('click', loadCommentsButtonClickHandler);
 };
 
 const renderComments = (dataComments) => {
@@ -48,7 +48,7 @@ const renderComments = (dataComments) => {
   comments = dataComments;
   renderNextComments();
 
-  loadCommentsButtonElement.addEventListener('click', loadCommentsButtonClickHandler);
+  loadCommentsButton.addEventListener('click', loadCommentsButtonClickHandler);
 };
 
 function loadCommentsButtonClickHandler () {

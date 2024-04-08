@@ -4,8 +4,7 @@ import {openModal, closeModal} from './modal.js';
 import {setEffect, setScale} from './form-image-edit.js';
 import {pristine} from './form-validation.js';
 import {FormSubmitButtonText} from './const-values.js';
-import {showNotification} from './utils.js';
-
+import {showNotification} from './notifications.js';
 
 const disableFormSubmitButton = (text) => {
   formSubmitButtonElement.disabled = true;

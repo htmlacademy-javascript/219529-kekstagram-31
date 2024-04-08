@@ -22,6 +22,11 @@ const createThumbnail = ({url, description, likes, comments}, imageClickHandler)
 const renderThumbnails = (dataPhotos, imageClickHandler) => {
   const thumbnailContainerElement = document.querySelector('.pictures');
   const fragment = document.createDocumentFragment();
+  const thumbnailsElements = thumbnailContainerElement.querySelectorAll('.picture');
+
+  thumbnailsElements.forEach((thumbnailElement) => {
+    thumbnailElement.outerHTML = '';
+  });
 
   dataPhotos.forEach((dataPhoto) => {
     const photoThumbnail = createThumbnail(dataPhoto, imageClickHandler);

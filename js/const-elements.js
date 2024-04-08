@@ -16,6 +16,7 @@ const effectsListElement = formElement.querySelector('.effects__list');
 const formSubmitButtonElement = formElement.querySelector('.img-upload__submit');
 const successTemplateElement = document.querySelector('#success').content;
 const errorTemplateElement = document.querySelector('#error').content;
+const filtersContainerElement = document.querySelector('.img-filters');
 
 export {
   photoModalElement,
@@ -36,5 +37,6 @@ export {
   formSubmitButtonElement,
   successTemplateElement,
   errorTemplateElement,
+  filtersContainerElement,
 };
 

@@ -44,7 +44,6 @@ const TIMEOUT_MESSAGE_REMOVE = 5000;
 const RANDOM_PHOTOS_COUNT = 10;
 const DEBOUNCE_DELAY = 500;
 
-
 export {
   BASE_URL,
   Route,

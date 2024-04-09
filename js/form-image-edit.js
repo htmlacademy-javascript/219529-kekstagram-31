@@ -3,25 +3,27 @@ import {SCALE_CHANGE_STEP, SCALE_MAX, SCALE_MIN, EffectsSettings} from './const-
 
 let currentScale = SCALE_MAX;
 
+const applyScale = () => {
+  scaleInputElement.value = `${currentScale * 100}%`;
+  formImageElement.style.transform = `scale(${currentScale})`;
+};
+
 const scaleSmallerButtonClickHandler = () => {
   if (currentScale > SCALE_MIN) {
     currentScale -= SCALE_CHANGE_STEP;
-    scaleInputElement.value = `${currentScale * 100}%`;
-    formImageElement.style.transform = `scale(${currentScale})`;
+    applyScale();
   }
 };
 
 const scaleBiggerButtonClickHandler = () => {
   if (currentScale < SCALE_MAX) {
     currentScale += SCALE_CHANGE_STEP;
-    scaleInputElement.value = `${currentScale * 100}%`;
-    formImageElement.style.transform = `scale(${currentScale})`;
+    applyScale();
   }
 };
 
 const setScale = () => {
-  scaleInputElement.value = `${SCALE_MAX * 100}%`;
-
+  applyScale();
   scaleSmallerButton.addEventListener('click', scaleSmallerButtonClickHandler);
   scaleBiggerButton.addEventListener('click', scaleBiggerButtonClickHandler);
 };

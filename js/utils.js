@@ -34,5 +34,4 @@ const debounce = (callback, timeoutDelay = 500) => {
   };
 };
 
-
 export {fisherYatesShuffle, debounce};

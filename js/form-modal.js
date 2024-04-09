@@ -49,6 +49,8 @@ const uploadImageFile = () => {
     effectPreviewElements.forEach((effectPreviewElement) => {
       effectPreviewElement.style.backgroundImage = `url(${url})`;
     });
+    setScale();
+    setEffect();
     openModal(formModalElement);
   }
 
@@ -61,8 +63,6 @@ const fileInputElementChangeHandler = () => {
   resetScale();
   resetEffect();
   uploadImageFile();
-  setScale();
-  setEffect();
 };
 
 const formSubmitHandler = (evt) => {

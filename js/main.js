@@ -5,7 +5,6 @@ import {renderComments} from './comments.js';
 import {openModal} from './modal.js';
 import {photoModalElement} from './const-elements.js';
 import {getData} from './api.js';
-// import {filterPhotos} from './filters-delegation.js';
 import {filterPhotos} from './filters.js';
 
 const bootstrap = async () => {

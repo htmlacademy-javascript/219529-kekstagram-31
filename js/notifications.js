@@ -31,6 +31,7 @@ const closeNotification = (evt) => {
     document.body.removeEventListener('keydown', closeNotification);
   }
 };
+
 const showNotification = (template, trigger = null) => {
   trigger?.();
   const notificationElement = template.cloneNode(true);

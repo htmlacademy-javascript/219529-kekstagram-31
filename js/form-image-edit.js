@@ -1,36 +1,39 @@
-import {effectLevelInputElement, effectNameInputElement, effectsListElement, formImageElement, scaleInputElement, sliderContainerElement, sliderElement, formElement,} from './const-elements.js';
-import {SCALE_CHANGE_STEP, SCALE_MAX, SCALE_MIN, effectsSettings} from './const-values.js';
+import {effectLevelInputElement, effectNameInputElement, effectsListElement, formImageElement, scaleInputElement, scaleSmallerButton, scaleBiggerButton, sliderContainerElement, sliderElement,} from './const-elements.js';
+import {SCALE_CHANGE_STEP, SCALE_MAX, SCALE_MIN, EffectsSettings} from './const-values.js';
 
-const resetScale = () => {
-  scaleInputElement.value = '100%';
-  formImageElement.style.transform = 'scale(1)';
+let currentScale = SCALE_MAX;
+
+const applyScale = () => {
+  scaleInputElement.value = `${currentScale * 100}%`;
+  formImageElement.style.transform = `scale(${currentScale})`;
+};
+
+const scaleSmallerButtonClickHandler = () => {
+  if (currentScale > SCALE_MIN) {
+    currentScale -= SCALE_CHANGE_STEP;
+    applyScale();
+  }
+};
+
+const scaleBiggerButtonClickHandler = () => {
+  if (currentScale < SCALE_MAX) {
+    currentScale += SCALE_CHANGE_STEP;
+    applyScale();
+  }
 };
 
 const setScale = () => {
-  const scaleSmallerButtonElement = formElement.querySelector('.scale__control--smaller');
-  const scaleBiggerButtonElement = formElement.querySelector('.scale__control--bigger');
+  applyScale();
+  scaleSmallerButton.addEventListener('click', scaleSmallerButtonClickHandler);
+  scaleBiggerButton.addEventListener('click', scaleBiggerButtonClickHandler);
+};
 
-  scaleInputElement.value = `${SCALE_MAX * 100}%`;
-  let currentScale = SCALE_MAX;
-
-  const scaleSmallerButtonElementClickHandler = () => {
-    if (currentScale > SCALE_MIN) {
-      currentScale -= SCALE_CHANGE_STEP;
-      scaleInputElement.value = `${currentScale * 100}%`;
-      formImageElement.style.transform = `scale(${currentScale})`;
-    }
-  };
-
-  const scaleBiggerButtonElementClickHandler = () => {
-    if (currentScale < SCALE_MAX) {
-      currentScale += SCALE_CHANGE_STEP;
-      scaleInputElement.value = `${currentScale * 100}%`;
-      formImageElement.style.transform = `scale(${currentScale})`;
-    }
-  };
-
-  scaleSmallerButtonElement.addEventListener('click', scaleSmallerButtonElementClickHandler);
-  scaleBiggerButtonElement.addEventListener('click', scaleBiggerButtonElementClickHandler);
+const resetScale = () => {
+  currentScale = SCALE_MAX;
+  scaleInputElement.value = '100%';
+  formImageElement.style.transform = 'scale(1)';
+  scaleBiggerButton.removeEventListener('click', scaleBiggerButtonClickHandler);
+  scaleSmallerButton.removeEventListener('click', scaleSmallerButtonClickHandler);
 };
 
 // init slider with any options as they will be updated later
@@ -59,7 +62,7 @@ const resetEffect = () => {
 };
 
 const changeEffect = (effect) => {
-  const {filter, min, max, step, unit} = effectsSettings[effect];
+  const {filter, min, max, step, unit} = EffectsSettings[effect];
 
   sliderElement.noUiSlider.off('update');
   sliderElement.noUiSlider.updateOptions({

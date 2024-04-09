@@ -15,7 +15,7 @@ const ErrorText = {
   [Method.POST]: 'Не удалось отправить данные формы',
 };
 
-const effectsSettings = {
+const EffectsSettings = {
   chrome: {filter: 'grayscale', min: 0, max: 1, step: 0.1, unit: ''},
   sepia: {filter: 'sepia', min: 0, max: 1, step: 0.1, unit: ''},
   marvin: {filter: 'invert', min: 0, max: 100, step: 1, unit: '%'},
@@ -28,6 +28,11 @@ const FormSubmitButtonText = {
   SENDING: 'Сохраняю...',
 };
 
+const Messages = {
+  INVALID_IMAGE_FILE_TYPE: 'Выберите изображение в формате jpg, png, gif, tiff, webp, svg',
+};
+
+const IMAGE_FILE_TYPES = ['image/jpeg', 'image/png', 'image/gif', 'image/tiff', 'image/webp', 'image/svg+xml'];
 const COMMENTS_RENDER_STEP = 5;
 const COMMENT_MAX_LENGTH = 140;
 const HASHTAGS_MAX = 5;
@@ -35,10 +40,9 @@ const HASHTAG_MAX_LENGTH = 20;
 const SCALE_MAX = 1;
 const SCALE_MIN = 0.25;
 const SCALE_CHANGE_STEP = 0.25;
-const TIMEOUT_MESSAGE_REMOVE = 500;
+const TIMEOUT_MESSAGE_REMOVE = 5000;
 const RANDOM_PHOTOS_COUNT = 10;
 const DEBOUNCE_DELAY = 500;
-
 
 export {
   BASE_URL,
@@ -46,7 +50,9 @@ export {
   Method,
   ErrorText,
   FormSubmitButtonText,
-  effectsSettings,
+  EffectsSettings,
+  Messages,
+  IMAGE_FILE_TYPES,
   COMMENTS_RENDER_STEP,
   COMMENT_MAX_LENGTH,
   SCALE_MIN,

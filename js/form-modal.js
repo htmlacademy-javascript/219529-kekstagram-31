@@ -1,22 +1,22 @@
-import {formElement, formFileInputElement, formModalElement, formSubmitButtonElement, successTemplateElement, errorTemplateElement} from './const-elements.js';
+import {formElement, formFileInputElement, formModalElement, formSubmitButton, effectPreviewElements, successTemplateElement, errorTemplateElement, formImageElement,} from './const-elements.js';
 import {sendData} from './api.js';
 import {openModal, closeModal} from './modal.js';
-import {setEffect, setScale} from './form-image-edit.js';
+import {resetEffect, resetScale, setEffect, setScale} from './form-image-edit.js';
 import {pristine} from './form-validation.js';
-import {FormSubmitButtonText} from './const-values.js';
-import {showNotification} from './notifications.js';
+import {FormSubmitButtonText, Messages, IMAGE_FILE_TYPES} from './const-values.js';
+import {showErrorMessage, showNotification} from './notifications.js';
 
 const disableFormSubmitButton = (text) => {
-  formSubmitButtonElement.disabled = true;
-  formSubmitButtonElement.textContent = text;
+  formSubmitButton.disabled = true;
+  formSubmitButton.textContent = text;
 };
 
 const enableFormSubmitButton = (text) => {
-  formSubmitButtonElement.disabled = false;
-  formSubmitButtonElement.textContent = text;
+  formSubmitButton.disabled = false;
+  formSubmitButton.textContent = text;
 };
 
-const sendUploadFormData = async (form) => {
+const sendFormData = async (form) => {
   const isValid = pristine.validate();
 
   if (isValid) {
@@ -39,18 +39,38 @@ const sendUploadFormData = async (form) => {
   }
 };
 
-const uploadInputElementChangeHandler = () => {
-  openModal(formModalElement);
-  setScale();
-  setEffect();
+const uploadImageFile = () => {
+  const imageFile = formFileInputElement.files[0];
+  const isImageFileTypeValid = IMAGE_FILE_TYPES.includes(imageFile.type);
+
+  if (isImageFileTypeValid) {
+    const url = URL.createObjectURL(imageFile);
+    formImageElement.src = url;
+    effectPreviewElements.forEach((effectPreviewElement) => {
+      effectPreviewElement.style.backgroundImage = `url(${url})`;
+    });
+    setScale();
+    setEffect();
+    openModal(formModalElement);
+  }
+
+  if (!isImageFileTypeValid) {
+    showErrorMessage(Messages.INVALID_IMAGE_FILE_TYPE);
+  }
 };
 
-const uploadFormSubmitHandler = (evt) => {
+const fileInputElementChangeHandler = () => {
+  resetScale();
+  resetEffect();
+  uploadImageFile();
+};
+
+const formSubmitHandler = (evt) => {
   evt.preventDefault();
-  sendUploadFormData(evt.target);
+  sendFormData(evt.target);
 };
 
-formFileInputElement.addEventListener('change', uploadInputElementChangeHandler);
-formElement.addEventListener('submit', uploadFormSubmitHandler);
+formFileInputElement.addEventListener('change', fileInputElementChangeHandler);
+formElement.addEventListener('submit', formSubmitHandler);
 
 

@@ -4,6 +4,7 @@ import {filtersContainerElement} from './const-elements.js';
 import {DEBOUNCE_DELAY, RANDOM_PHOTOS_COUNT} from './const-values.js';
 
 const debounceRenderThumbnails = debounce(renderThumbnails, DEBOUNCE_DELAY);
+
 const activateButton = (evt) => {
   filtersContainerElement.querySelectorAll('button')
     .forEach((button) => {

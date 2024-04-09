@@ -1,5 +1,5 @@
 import {formElement, formFileInputElement, hashtagInputElement, commentInputElement} from './const-elements.js';
-import {resetEffect, resetScale} from './form-image-edit.js';
+import {pristine} from './form-validation';
 
 const openModal = (modalElement) => {
   const closeButtonElement = modalElement.querySelector('.cancel');
@@ -20,8 +20,7 @@ const closeModal = (modalElement) => {
   // upload-form reset
   if (formFileInputElement.files) {
     formElement.reset();
-    resetScale();
-    resetEffect();
+    pristine.reset();
   }
 };
 
